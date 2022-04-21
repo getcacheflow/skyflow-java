@@ -1,4 +1,4 @@
-package com.skyflow.errors;
+package com.skyflow.api.util;
 
 public enum ErrorCode {
     InvalidVaultURL(400, "Invalid Vault URL"),

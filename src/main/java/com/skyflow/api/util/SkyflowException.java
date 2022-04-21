@@ -1,10 +1,13 @@
-package com.skyflow.errors;
+package com.skyflow.api.util;
 
-import org.json.simple.JSONObject;
+import com.skyflow.api.entities.SkyflowError;
 
 public final class SkyflowException extends Exception {
+  
+    private static final long serialVersionUID = 1L;
+  
     private int code;
-    private JSONObject data;
+    private SkyflowError error;
 
     public SkyflowException(ErrorCode errorCode) {
         super(errorCode.getDescription());
@@ -26,10 +29,15 @@ public final class SkyflowException extends Exception {
         this.setCode(code);
     }
 
-    public SkyflowException(int code, String description, JSONObject data) {
+    public SkyflowException(ErrorCode errorCode, SkyflowError error) {
+      super(error.getMessage());
+      this.setCode(errorCode.getCode());
+      this.setError(error);
+    }
+    
+    public SkyflowException(int code, String description, SkyflowError error) {
         super(description);
-        this.setCode(code);
-        setData(data);
+        this.setCode(code);        
     }
 
     public int getCode() {
@@ -40,12 +48,14 @@ public final class SkyflowException extends Exception {
         this.code = code;
     }
 
-
-    public JSONObject getData() {
-        return data;
+    public SkyflowError getError() {
+      return error;
     }
 
-    void setData(JSONObject data) {
-        this.data = data;
+    public void setError(SkyflowError error) {
+      this.error = error;
     }
+
+    
+    
 }

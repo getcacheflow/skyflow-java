@@ -1,4 +1,4 @@
-package com.skyflow.entities;
+package com.skyflow.api.entities;
 
 public enum RedactionType {
     DEFAULT("DEFAULT"),
